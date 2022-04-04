@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Australian Cities Weather Forecast</title>
+
+</head>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<body>
+<!--<div style="width:100%;text-align:center">-->
+<form name="form1" action="#" method="POST" >
+    Choose City：
+    <select id="slt1"  onchange="updateSelect()">
+        <option >Please choose city</option>
+        <option value="1BABF" >Sydney</option>
+        <option value="754D9">Melbourne</option>
+        <option value="F7F3">Wollongong</option>
+    </select>
+
+
+<table border="1" cellspacing="0">
+    <tbody id="test">
+
+    </tbody>
+</table>
+</form>
+<!--</div>-->
+</body>
+</html>
+<script type="text/javascript">
+    function updateSelect(){
+        var cityId = $(slt1).val();
+        console.log('cityId'+cityId)
+        var url   = "http://124.221.67.115:8080/weather/cityId/";  //这里填写后端的url
+        $.ajax({   //2、发送给后端
+            url: url+cityId,
+            type: 'GET',
+            success:function(data) {
+                $("#test").html("    <tr>\n" +
+                    "    <tr> <td>city</td><td>"+data.city+"</td> </tr>\n" +
+                    "    <tr> <td>Updated time</td><td>"+data.updateTime+"</td> </tr>\n" +
+                    "    <tr><td>Weather</td><td>"+data.weather+"</td></tr>\n" +
+                    "    <tr><td>Temperature</td><td>"+data.temp+"</td></tr>\n" +
+                    "    <tr><td>Wind</td><td>"+data.wind+"</td></tr>");
+            }
+
+        })
+    };
+</script>
+
