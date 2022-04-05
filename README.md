@@ -11,4 +11,4 @@ This web application display current weather for 3 Australian cities:Sydney,Melb
 h1 {
     border-bottom: none
 }
-</style
+</style>
